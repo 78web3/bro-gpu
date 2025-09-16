@@ -37,3 +37,23 @@ python pow_cli.py --txid {txid} --vout {vout} --stream
 找到 miningProgress，其右边对应的 value，这是一个 json，把其复制出来，将刚才用显卡计算得到的结果中的 best 的 nonce、hash_hex、leading_zero_bits 替换掉复制出来的 json 中对应的数据，再将结果粘贴回去
 
 刷新页面即可继续
+
+## 代码操作 localstorage
+
+在 devtools 的 console 页面输入下面代码：
+
+```
+const best =  {"nonce": 287286380054, "hash_hex": "0000000000786540680ad450e011574b384704ab7a24f41344bb053d22020dc7", "leading_zero_bits": 41}
+const result = {
+  "nonce": best.nonce,
+  "hash": best.hash_hex,
+  "bestHash": best.hash_hex,
+  "bestNonce": best.nonce,
+  "bestLeadingZeros": best.leading_zero_bits,
+  "timestamp": Date.now(),
+  "completed": true
+}
+localStorage.setItem("miningResult", JSON.stringify(result))
+```
+
+**注意一定要自己替换代码计算出来的 best 的部分**
